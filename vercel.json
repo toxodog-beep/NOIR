@@ -1,0 +1,14 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/shop", "destination": "/index.html" },
+    { "source": "/cart", "destination": "/index.html" },
+    { "source": "/checkout", "destination": "/index.html" },
+    { "source": "/success", "destination": "/index.html" },
+    { "source": "/fail", "destination": "/index.html" },
+    { "source": "/orders", "destination": "/index.html" },
+    { "source": "/product/:slug", "destination": "/index.html" },
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/products/:path*", "destination": "/public/products/:path*" }
+  ]
+}

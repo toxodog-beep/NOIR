@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 1120" role="img" aria-labelledby="title desc">
+  <title id="title">lowrider-wrap</title>
+  <desc id="desc">NOIR FRAME product artwork for lowrider-wrap</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050506"/>
+      <stop offset="0.58" stop-color="#101114"/>
+      <stop offset="1" stop-color="#050506"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="32%" cy="18%" r="60%">
+      <stop offset="0" stop-color="#737b80" stop-opacity=".34"/>
+      <stop offset=".55" stop-color="#737b80" stop-opacity=".09"/>
+      <stop offset="1" stop-color="#737b80" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="30" stdDeviation="28" flood-color="#000" flood-opacity=".55"/>
+    </filter>
+  </defs>
+  <rect width="960" height="1120" fill="url(#bg)"/>
+  <rect width="960" height="1120" fill="url(#glow)"/>
+  <rect y="910" width="960" height="210" fill="#000" opacity=".38"/>
+  <g filter="url(#shadow)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M130 490c74-108 626-108 700 0v64c-86 106-614 106-700 0z" fill="#737b80" fill-opacity=".28" stroke="#737b80" stroke-width="13"/>
+    <path d="M110 466c112-128 628-128 740 0" fill="none" stroke="#737b80" stroke-width="13"/>
+    <path d="M190 540 70 620 M770 540l120 80" stroke="#050506" stroke-width="16"/>
+    <path d="M226 430 372 575 M590 430l146 145" stroke="#fff" stroke-opacity=".28" stroke-width="8"/>
+  </g>
+  <text x="80" y="990" fill="#f3f0e8" opacity=".82" font-family="Arial, sans-serif" font-size="36" letter-spacing="3">LOWRIDER-WRAP</text>
+  <text x="80" y="1042" fill="#737b80" opacity=".72" font-family="Arial, sans-serif" font-size="22" letter-spacing="5">NOIR FRAME</text>
+</svg>
