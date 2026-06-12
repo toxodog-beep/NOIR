@@ -640,15 +640,30 @@
       }
 
       function visual(kind) {
-        const lens = kind === "square" ? '<path d="M150 198c34-24 134-24 162 0 24 22 20 120-8 142-34 26-128 26-162 0-28-22-30-120 8-142z"/><path d="M388 198c34-24 134-24 162 0 24 22 20 120-8 142-34 26-128 26-162 0-28-22-30-120 8-142z"/>' :
-          kind === "cat" ? '<path d="M128 216l168-56c38-12 70 11 76 52l18 118c-60 24-172 38-234 14-30-12-48-104-28-128z"/><path d="M572 216l-168-56c-38-12-70 11-76 52l-18 118c60 24 172 38 234 14 30-12 48-104 28-128z"/>' :
-          kind === "rimless" ? '<path d="M154 198c34-24 126-24 160 0 28 20 28 118 0 138-36 25-126 25-162 0-28-20-28-118 2-138z"/><path d="M386 198c34-24 126-24 160 0 28 20 28 118 0 138-36 25-126 25-162 0-28-20-28-118 2-138z"/>' :
-          kind === "wrap" ? '<path d="M92 232c52-92 516-92 568 0 22 40 10 82-24 110-76 62-468 62-544 0-34-28-46-70-24-110z"/>' :
-          kind === "blade" ? '<path d="M90 190l238 24-26 140-190-26c-34-5-50-104-22-138z"/><path d="M610 190l-238 24 26 140 190-26c34-5 50-104 22-138z"/>' :
-          kind === "ring" || kind === "signet" ? '<ellipse cx="350" cy="318" rx="160" ry="145" fill="none" stroke="url(#metal)" stroke-width="44"/><ellipse cx="350" cy="318" rx="96" ry="82" fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="10"/>' :
-          kind === "pendant" || kind === "chain" ? '<path d="M185 170c84-58 246-58 330 0" fill="none" stroke="url(#metal)" stroke-width="14"/><path d="M350 180v132" stroke="url(#metal)" stroke-width="8"/><path d="M350 312l-62 132h124z" fill="url(#metal)" opacity=".78"/>' :
-          '<path d="M102 212c54-64 442-64 496 0 24 30 24 96 0 126-62 76-434 76-496 0-24-30-24-96 0-126z"/>';
-        const signet = kind === "signet" ? '<rect x="270" y="186" width="160" height="92" rx="26" fill="url(#metal)" opacity=".88"/>' : "";
+        const eyewear = {
+          square: '<rect x="124" y="196" width="178" height="132" rx="42"/><rect x="398" y="196" width="178" height="132" rx="42"/>',
+          cat: '<rect x="120" y="196" width="184" height="130" rx="50"/><rect x="396" y="196" width="184" height="130" rx="50"/>',
+          rimless: '<rect x="126" y="196" width="176" height="132" rx="46"/><rect x="398" y="196" width="176" height="132" rx="46"/>',
+          wrap: '<rect x="88" y="198" width="524" height="132" rx="66"/>',
+          blade: '<rect x="118" y="198" width="184" height="128" rx="34"/><rect x="398" y="198" width="184" height="128" rx="34"/>',
+          shield: '<rect x="92" y="198" width="516" height="134" rx="67"/>',
+          optical: '<rect x="124" y="196" width="178" height="132" rx="48"/><rect x="398" y="196" width="178" height="132" rx="48"/>',
+        };
+        const jewelry = {
+          ring: '<circle cx="350" cy="312" r="146" fill="none" stroke="url(#metal)" stroke-width="42"/><circle cx="350" cy="312" r="86" fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="10"/><circle cx="290" cy="214" r="22" fill="#fff" stroke="none" opacity=".14"/><circle cx="350" cy="198" r="20" fill="#fff" stroke="none" opacity=".17"/><circle cx="410" cy="214" r="22" fill="#fff" stroke="none" opacity=".14"/>',
+          signet: '<circle cx="350" cy="318" r="146" fill="none" stroke="url(#metal)" stroke-width="42"/><circle cx="350" cy="318" r="86" fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="10"/><rect x="268" y="190" width="164" height="88" rx="28" fill="url(#metal)" stroke="none" opacity=".88"/>',
+          pendant: '<path d="M190 174c86-54 234-54 320 0" fill="none" stroke="url(#metal)" stroke-width="14"/><path d="M350 182v126" stroke="url(#metal)" stroke-width="8"/><path d="M350 308l-56 126h112z" fill="url(#metal)" stroke="none" opacity=".78"/>',
+          chain: '<rect x="132" y="228" width="110" height="56" rx="28" fill="none" stroke="url(#metal)" stroke-width="14"/><rect x="224" y="260" width="110" height="56" rx="28" fill="none" stroke="url(#metal)" stroke-width="14"/><rect x="316" y="228" width="110" height="56" rx="28" fill="none" stroke="url(#metal)" stroke-width="14"/><rect x="408" y="260" width="110" height="56" rx="28" fill="none" stroke="url(#metal)" stroke-width="14"/><circle cx="350" cy="392" r="64" fill="none" stroke="url(#metal)" stroke-width="18"/>',
+        };
+        const isJewelry = ["ring", "signet", "pendant", "chain"].includes(kind);
+        const lens = isJewelry ? jewelry[kind] : eyewear[kind] || eyewear.shield;
+        const bridge = isJewelry
+          ? ""
+          : kind === "wrap" || kind === "shield"
+            ? '<path d="M148 264h404" stroke="url(#metal)" stroke-width="7" opacity=".55"/>'
+            : '<path d="M302 264h96" stroke="url(#metal)" stroke-width="10"/>';
+        const temples = isJewelry ? "" : '<path d="M126 272 58 322M574 272l68 50" stroke="#060607" stroke-width="15" stroke-linecap="round"/>';
+        const shine = isJewelry ? "" : '<path d="M176 214c44-14 92-14 136 0M388 214c44-14 92-14 136 0" stroke="#fff" stroke-opacity=".34" stroke-width="7" stroke-linecap="round"/>';
         return `<svg class="visual" viewBox="0 0 700 560" role="img" aria-label="NOIR FRAME product render">
           <defs>
             <linearGradient id="lens" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".36" stop-color="#9db9ad" stop-opacity=".28"/><stop offset="1" stop-color="#020203" stop-opacity=".75"/></linearGradient>
@@ -656,8 +671,8 @@
             <filter id="shadow"><feDropShadow dx="0" dy="24" stdDeviation="18" flood-color="#000" flood-opacity=".62"/></filter>
           </defs>
           <rect width="700" height="560" fill="#090a0b"/><radialGradient id="halo" cx=".45" cy=".28" r=".65"><stop offset="0" stop-color="#9db9ad" stop-opacity=".2"/><stop offset="1" stop-color="#9db9ad" stop-opacity="0"/></radialGradient><rect width="700" height="560" fill="url(#halo)"/><ellipse cx="350" cy="402" rx="238" ry="58" fill="#000" opacity=".42"/>
-          <g filter="url(#shadow)" transform="translate(0 18)" fill="url(#lens)" stroke="url(#metal)" stroke-width="${kind === "rimless" ? 6 : 14}" stroke-linecap="round" stroke-linejoin="round">${lens}${signet}</g>
-          <path d="M146 284 62 342M554 284l84 58" stroke="#060607" stroke-width="15" stroke-linecap="round"/><path d="M205 206c38-18 82-20 124-6M400 206c38-18 82-20 124-6" stroke="#fff" stroke-opacity=".34" stroke-width="7" stroke-linecap="round"/>
+          <g filter="url(#shadow)" transform="translate(0 18)" fill="${isJewelry ? "none" : "url(#lens)"}" stroke="url(#metal)" stroke-width="${kind === "rimless" ? 6 : 14}" stroke-linecap="round" stroke-linejoin="round">${lens}${bridge}</g>
+          ${temples}${shine}
         </svg>`;
       }
 
